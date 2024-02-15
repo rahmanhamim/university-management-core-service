@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\.989e797804b26262a49b4127eb479aa9925cec60-audit.json",
+    "files": [
+        {
+            "date": 1707992025279,
+            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-15-02-16-error.log",
+            "hash": "c680e374a8f277f0735e10797af53b49ba49b0fae0c45ff0a8ea3f2c6d26713b"
+        }
+    ],
+    "hashType": "sha256"
+}
