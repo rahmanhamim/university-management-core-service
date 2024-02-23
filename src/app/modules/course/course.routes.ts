@@ -29,4 +29,11 @@ router.delete(
     CourseController.deleteByIdFromDB
 );
 
+router.post(
+    '/:id/assign-faculties',
+    validateRequest(CourseValidation.assignOrRemoveFaculties),
+    auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+    CourseController.assignFaculties
+);
+
 export const courseRoutes = router;
