@@ -49,6 +49,11 @@
             "date": 1708682111932,
             "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-23-02-15-success.log",
             "hash": "78eb473288d38a7f5bc58e092e53fd52a040dbf5f693b781f63fcbf210a5af04"
+        },
+        {
+            "date": 1708682729167,
+            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-23-02-16-success.log",
+            "hash": "883a99456042fd23243426206ce3bc8c1536b4f7ac1bc211f923b244d657c1b8"
         }
     ],
     "hashType": "sha256"

@@ -5,11 +5,19 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import prisma from '../../../shared/prisma';
-import { ICourseCreateData, ICourseFilterRequest } from './corse.interface';
+import { asyncForEach } from '../../../shared/utils';
+import {
+    ICourseCreateData,
+    ICourseFilterRequest,
+    IPrerequisiteCourseRequest,
+} from './corse.interface';
 import { courseSearchableFields } from './course.constants';
 
 const insertIntoDB = async (data: ICourseCreateData): Promise<any> => {
     const { preRequisiteCourses, ...courseData } = data;
+
+    console.log('course data', courseData);
+    console.log('pre requisite course data: ', preRequisiteCourses);
 
     const newCourse = await prisma.$transaction(async transactionClient => {
         const result = await transactionClient.course.create({
@@ -24,16 +32,19 @@ const insertIntoDB = async (data: ICourseCreateData): Promise<any> => {
         }
 
         if (preRequisiteCourses && preRequisiteCourses.length > 0) {
-            for (let index = 0; index < preRequisiteCourses.length; index++) {
-                const createPrerequisite =
-                    await transactionClient.courseToPrerequisite.create({
-                        data: {
-                            courseId: result.id,
-                            prerequisiteId: preRequisiteCourses[index].courseId,
-                        },
-                    });
-                console.log(createPrerequisite);
-            }
+            await asyncForEach(
+                preRequisiteCourses,
+                async (preRequisiteCourse: IPrerequisiteCourseRequest) => {
+                    const createPrerequisite =
+                        await transactionClient.courseToPrerequisite.create({
+                            data: {
+                                courseId: result.id,
+                                preRequisiteId: preRequisiteCourse.courseId,
+                            },
+                        });
+                    console.log(createPrerequisite);
+                }
+            );
         }
         return result;
     });
@@ -44,12 +55,12 @@ const insertIntoDB = async (data: ICourseCreateData): Promise<any> => {
                 id: newCourse.id,
             },
             include: {
-                prerequisite: {
+                preRequisite: {
                     include: {
-                        prerequisite: true,
+                        preRequisite: true,
                     },
                 },
-                prerequisiteFor: {
+                preRequisiteFor: {
                     include: {
                         course: true,
                     },
@@ -99,12 +110,12 @@ const getAllFromDB = async (
 
     const result = await prisma.course.findMany({
         include: {
-            prerequisite: {
+            preRequisite: {
                 include: {
-                    prerequisite: true,
+                    preRequisite: true,
                 },
             },
-            prerequisiteFor: {
+            preRequisiteFor: {
                 include: {
                     course: true,
                 },
@@ -140,12 +151,12 @@ const getByIdFromDB = async (id: string): Promise<Course | null> => {
             id,
         },
         include: {
-            prerequisite: {
+            preRequisite: {
                 include: {
-                    prerequisite: true,
+                    preRequisite: true,
                 },
             },
-            prerequisiteFor: {
+            preRequisiteFor: {
                 include: {
                     course: true,
                 },
@@ -179,39 +190,43 @@ const updateOneInDB = async (
         if (preRequisiteCourses && preRequisiteCourses.length > 0) {
             const deletePrerequisite = preRequisiteCourses.filter(
                 coursePrerequisite =>
-                    coursePrerequisite.courseId && coursePrerequisite?.isDeleted
+                    coursePrerequisite.courseId && coursePrerequisite.isDeleted
             );
 
             const newPrerequisite = preRequisiteCourses.filter(
                 coursePrerequisite =>
-                    coursePrerequisite.courseId &&
-                    !coursePrerequisite?.isDeleted
+                    coursePrerequisite.courseId && !coursePrerequisite.isDeleted
             );
 
-            for (let index = 0; index < deletePrerequisite.length; index++) {
-                await transactionClient.courseToPrerequisite.deleteMany({
-                    where: {
-                        AND: [
-                            {
-                                courseId: id,
-                            },
-                            {
-                                prerequisiteId:
-                                    deletePrerequisite[index].courseId,
-                            },
-                        ],
-                    },
-                });
-            }
+            await asyncForEach(
+                deletePrerequisite,
+                async (deletePreCourse: IPrerequisiteCourseRequest) => {
+                    await transactionClient.courseToPrerequisite.deleteMany({
+                        where: {
+                            AND: [
+                                {
+                                    courseId: id,
+                                },
+                                {
+                                    preRequisiteId: deletePreCourse.courseId,
+                                },
+                            ],
+                        },
+                    });
+                }
+            );
 
-            for (let index = 0; index < newPrerequisite.length; index++) {
-                await transactionClient.courseToPrerequisite.create({
-                    data: {
-                        courseId: id,
-                        prerequisiteId: newPrerequisite[index].courseId,
-                    },
-                });
-            }
+            await asyncForEach(
+                newPrerequisite,
+                async (insertPrerequisite: IPrerequisiteCourseRequest) => {
+                    await transactionClient.courseToPrerequisite.createMany({
+                        data: {
+                            courseId: id,
+                            preRequisiteId: insertPrerequisite.courseId,
+                        },
+                    });
+                }
+            );
         }
 
         return result;
@@ -219,15 +234,15 @@ const updateOneInDB = async (
 
     const responseData = await prisma.course.findUnique({
         where: {
-            id: id,
+            id,
         },
         include: {
-            prerequisite: {
+            preRequisite: {
                 include: {
-                    prerequisite: true,
+                    preRequisite: true,
                 },
             },
-            prerequisiteFor: {
+            preRequisiteFor: {
                 include: {
                     course: true,
                 },
@@ -246,7 +261,7 @@ const deleteByIdFromDB = async (id: string): Promise<Course> => {
                     courseId: id,
                 },
                 {
-                    prerequisiteId: id,
+                    preRequisiteId: id,
                 },
             ],
         },
