@@ -59,6 +59,11 @@
             "date": 1708688610917,
             "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-23-02-17-error.log",
             "hash": "b4e5344bf6fafec27a5ac2e33aa9cb511f1ef457a99bc8c44063add43c6dfbd5"
+        },
+        {
+            "date": 1708921270094,
+            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-26-02-10-error.log",
+            "hash": "6ce7408c229fa6d75bb2a53a2e4193c76405efcd72c49fc970d733d519a660f6"
         }
     ],
     "hashType": "sha256"
