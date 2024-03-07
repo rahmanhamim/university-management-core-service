@@ -6,11 +6,6 @@
     "auditLog": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\.665d39b2e65a49b8a0de58d7d706fa2c9a252458-audit.json",
     "files": [
         {
-            "date": 1708590368860,
-            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-22-02-14-success.log",
-            "hash": "32638d174d9ae816f4b7ba97556dd3b6cc4861308524e7671133bc2b7db5e790"
-        },
-        {
             "date": 1708595707964,
             "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-22-02-15-success.log",
             "hash": "0606f6dc0eda276bbf0f786c14fcb6ed6eafc675d29af7f362192826e2a00d7f"
@@ -179,6 +174,11 @@
             "date": 1709792305263,
             "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-07-03-12-success.log",
             "hash": "72f26e353008c9590d745d95084bcaf056d41e81fae72d23b617e0d42cf1e47c"
+        },
+        {
+            "date": 1709803190613,
+            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-07-03-15-success.log",
+            "hash": "6ee56dbe96af76d7f700483111a946b20c68b968782278097a17cfe9dcc756d9"
         }
     ],
     "hashType": "sha256"
