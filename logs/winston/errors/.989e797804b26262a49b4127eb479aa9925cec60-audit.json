@@ -6,31 +6,6 @@
     "auditLog": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\.989e797804b26262a49b4127eb479aa9925cec60-audit.json",
     "files": [
         {
-            "date": 1708595707968,
-            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-22-02-15-error.log",
-            "hash": "aed12488cacdfd7e1348a6a6cb194f4bc1a7f78f9a3421d8d68e923c1a5bd706"
-        },
-        {
-            "date": 1708596402308,
-            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-22-02-16-error.log",
-            "hash": "becfaa1fa499834443a02038797d33bf5e93842ba051a9db1243e32ac91d2f62"
-        },
-        {
-            "date": 1708600100962,
-            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-22-02-17-error.log",
-            "hash": "3886c7fe768ae627f94cae609c6a842010a484ec4a3fa16db5cf183f749f3ba1"
-        },
-        {
-            "date": 1708661280299,
-            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-23-02-10-error.log",
-            "hash": "10102f8e1a4858f6696b2d5bba189d0599855bf1836655b577a54472c1adeea8"
-        },
-        {
-            "date": 1708664682005,
-            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-23-02-11-error.log",
-            "hash": "70d94af43ade3a552ce43b7436815a1794419ff051cc2fe191ffb10268632fdd"
-        },
-        {
             "date": 1708668664219,
             "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-23-02-12-error.log",
             "hash": "be6a461e15bf68dbb3315cb7797c341505a5712a501c957a6c0d8dd32869aca4"
@@ -179,6 +154,11 @@
             "date": 1709803190627,
             "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-07-03-15-error.log",
             "hash": "37b8268d5b92f7a435837ef74dd9ebe6a1cc6e42656d7a8414158b5cbe0dde63"
+        },
+        {
+            "date": 1709874328893,
+            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\errors\\phu-2024-08-03-11-error.log",
+            "hash": "5863c2d6c9671cfe098d0031c25780f2d596fecac51c17f676d4c429223efb36"
         }
     ],
     "hashType": "sha256"
