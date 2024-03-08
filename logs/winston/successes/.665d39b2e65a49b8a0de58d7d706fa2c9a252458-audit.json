@@ -6,26 +6,6 @@
     "auditLog": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\.665d39b2e65a49b8a0de58d7d706fa2c9a252458-audit.json",
     "files": [
         {
-            "date": 1708668664207,
-            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-23-02-12-success.log",
-            "hash": "165cc4251d9f042bb9f046a1c50601f19269b2c2fbb86da104d7d10e11496355"
-        },
-        {
-            "date": 1708677181639,
-            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-23-02-14-success.log",
-            "hash": "b4eb7cb5f5978af1db8bd689428ad32668ba0a139f06d3a5fd0c7d6b4ce1fb70"
-        },
-        {
-            "date": 1708682111932,
-            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-23-02-15-success.log",
-            "hash": "78eb473288d38a7f5bc58e092e53fd52a040dbf5f693b781f63fcbf210a5af04"
-        },
-        {
-            "date": 1708682729167,
-            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-23-02-16-success.log",
-            "hash": "883a99456042fd23243426206ce3bc8c1536b4f7ac1bc211f923b244d657c1b8"
-        },
-        {
             "date": 1708688610913,
             "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-23-02-17-success.log",
             "hash": "030cfa50780f3e483d20dbb361a1a3afe16249a79743c6fe7ae81af03afc53f0"
@@ -159,6 +139,11 @@
             "date": 1709874328879,
             "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-08-03-11-success.log",
             "hash": "8fa1ed8c30fe22cec6efde5d1044d69e7274d5270f52ba51bd97533df1bf71be"
+        },
+        {
+            "date": 1709898034642,
+            "name": "C:\\Projects\\Hamim\\university-management-core-service\\logs\\winston\\successes\\phu-2024-08-03-17-success.log",
+            "hash": "f65fbf88fe2ba6f9c12175286b942f88f377276b24efc1e9ee81e020267620e8"
         }
     ],
     "hashType": "sha256"
