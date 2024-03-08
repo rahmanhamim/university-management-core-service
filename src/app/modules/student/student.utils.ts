@@ -17,9 +17,10 @@ const groupByAcademicSemester = (data: any) => {
                 grade: course.grade,
                 point: course.point,
                 totalMarks: course.totalMarks,
-                course: course.course,
+                course: course.course
             });
-        } else {
+        }
+        else {
             result.push({
                 academicSemester,
                 completedCourses: [
@@ -32,16 +33,16 @@ const groupByAcademicSemester = (data: any) => {
                         grade: course.grade,
                         point: course.point,
                         totalMarks: course.totalMarks,
-                        course: course.course,
-                    },
-                ],
-            });
+                        course: course.course
+                    }
+                ]
+            })
         }
         return result;
     }, []);
     return groupData;
-};
+}
 
 export const StudentUtils = {
-    groupByAcademicSemester,
-};
+    groupByAcademicSemester
+}

@@ -6,12 +6,12 @@ import { AcademicSemeterController } from './academicSemster.controller';
 import { AcademicSemesterValidation } from './academicSemster.validation';
 const router = express.Router();
 
-router.get('/', AcademicSemeterController.getAllFromDB);
-router.get('/:id', AcademicSemeterController.getDataById);
+router.get('/', AcademicSemeterController.getAllFromDB)
+router.get('/:id', AcademicSemeterController.getDataById)
 router.post(
     '/',
     validateRequest(AcademicSemesterValidation.create),
-    auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+    auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.SUPER_ADMIN),
     AcademicSemeterController.insertIntoDB
 );
 
