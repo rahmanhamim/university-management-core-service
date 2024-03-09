@@ -24,12 +24,12 @@ router.patch(
     auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.FACULTY),
     validateRequest(StudentEnrolledCourseMarkValidation.updateStudentMarks),
     StudentEnrolledCourseMarkConroller.updateStudentMarks
-);
+)
 router.patch(
     '/update-final-marks',
     auth(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.FACULTY),
     validateRequest(StudentEnrolledCourseMarkValidation.updateStudentMarks),
     StudentEnrolledCourseMarkConroller.updateFinalMarks
-);
+)
 
 export const studentEnrolledCourseMarkRoutes = router;

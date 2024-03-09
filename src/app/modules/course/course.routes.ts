@@ -16,12 +16,14 @@ router.post(
     CourseController.insertIntoDB
 );
 
+
 router.patch(
     '/:id',
     validateRequest(CourseValidation.update),
     auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
     CourseController.updateOneInDB
 );
+
 
 router.delete(
     '/:id',
@@ -30,17 +32,15 @@ router.delete(
 );
 
 router.post(
-    '/:id/assign-faculties',
+    "/:id/assign-faculties",
     validateRequest(CourseValidation.assignOrRemoveFaculties),
     auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-    CourseController.assignFaculties
-);
+    CourseController.assignFaculies)
 
 router.delete(
-    '/:id/remove-faculties',
+    "/:id/remove-faculties",
     validateRequest(CourseValidation.assignOrRemoveFaculties),
     auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-    CourseController.removeFaculties
-);
+    CourseController.removeFaculties)
 
 export const courseRoutes = router;

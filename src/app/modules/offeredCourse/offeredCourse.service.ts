@@ -1,22 +1,13 @@
-import { OfferedCourse, Prisma } from '@prisma/client';
-import { paginationHelpers } from '../../../helpers/paginationHelper';
-import { IGenericResponse } from '../../../interfaces/common';
-import { IPaginationOptions } from '../../../interfaces/pagination';
-import prisma from '../../../shared/prisma';
-import { asyncForEach } from '../../../shared/utils';
-import {
-    offeredCourseRelationalFields,
-    offeredCourseRelationalFieldsMapper,
-    offeredCourseSearchableFields,
-} from './offeredCourse.constants';
-import {
-    ICreateOfferedCourse,
-    IOfferedCourseFilterRequest,
-} from './offeredCourse.interface';
+import { OfferedCourse, Prisma } from "@prisma/client";
+import { paginationHelpers } from "../../../helpers/paginationHelper";
+import { IGenericResponse } from "../../../interfaces/common";
+import { IPaginationOptions } from "../../../interfaces/pagination";
+import prisma from "../../../shared/prisma";
+import { asyncForEach } from "../../../shared/utils";
+import { offeredCourseRelationalFields, offeredCourseRelationalFieldsMapper, offeredCourseSearchableFields } from "./offeredCourse.constants";
+import { ICreateOfferedCourse, IOfferedCourseFilterRequest } from "./offeredCourse.interface";
 
-const insertIntoDB = async (
-    data: ICreateOfferedCourse
-): Promise<OfferedCourse[]> => {
+const insertIntoDB = async (data: ICreateOfferedCourse): Promise<OfferedCourse[]> => {
     const { academicDepartmentId, semesterRegistrationId, courseIds } = data;
     const result: OfferedCourse[] = [];
 
@@ -25,69 +16,68 @@ const insertIntoDB = async (
             where: {
                 academicDepartmentId,
                 semesterRegistrationId,
-                courseId,
-            },
-        });
+                courseId
+            }
+        })
 
         if (!alreadyExist) {
             const insertOfferedCourse = await prisma.offeredCourse.create({
                 data: {
                     academicDepartmentId,
                     semesterRegistrationId,
-                    courseId,
+                    courseId
                 },
                 include: {
                     academicDepartment: true,
                     semesterRegistration: true,
-                    course: true,
-                },
-            });
+                    course: true
+                }
+            })
 
-            result.push(insertOfferedCourse);
+            result.push(insertOfferedCourse)
         }
-    });
+    })
 
     return result;
-};
+}
 
 const getAllFromDB = async (
     filters: IOfferedCourseFilterRequest,
     options: IPaginationOptions
 ): Promise<IGenericResponse<OfferedCourse[]>> => {
-    const { limit, page, skip } =
-        paginationHelpers.calculatePagination(options);
+    const { limit, page, skip } = paginationHelpers.calculatePagination(options);
     const { searchTerm, ...filterData } = filters;
 
     const andConditions = [];
 
     if (searchTerm) {
         andConditions.push({
-            OR: offeredCourseSearchableFields.map(field => ({
+            OR: offeredCourseSearchableFields.map((field) => ({
                 [field]: {
                     contains: searchTerm,
-                    mode: 'insensitive',
-                },
-            })),
+                    mode: 'insensitive'
+                }
+            }))
         });
     }
 
     if (Object.keys(filterData).length > 0) {
         andConditions.push({
-            AND: Object.keys(filterData).map(key => {
+            AND: Object.keys(filterData).map((key) => {
                 if (offeredCourseRelationalFields.includes(key)) {
                     return {
                         [offeredCourseRelationalFieldsMapper[key]]: {
-                            id: (filterData as any)[key],
-                        },
+                            id: (filterData as any)[key]
+                        }
                     };
                 } else {
                     return {
                         [key]: {
-                            equals: (filterData as any)[key],
-                        },
+                            equals: (filterData as any)[key]
+                        }
                     };
                 }
-            }),
+            })
         });
     }
 
@@ -98,7 +88,7 @@ const getAllFromDB = async (
         include: {
             semesterRegistration: true,
             course: true,
-            academicDepartment: true,
+            academicDepartment: true
         },
         where: whereConditions,
         skip,
@@ -107,33 +97,33 @@ const getAllFromDB = async (
             options.sortBy && options.sortOrder
                 ? { [options.sortBy]: options.sortOrder }
                 : {
-                      createdAt: 'desc',
-                  },
+                    createdAt: 'desc'
+                }
     });
     const total = await prisma.offeredCourse.count({
-        where: whereConditions,
+        where: whereConditions
     });
 
     return {
         meta: {
             total,
             page,
-            limit,
+            limit
         },
-        data: result,
+        data: result
     };
 };
 
 const getByIdFromDB = async (id: string): Promise<OfferedCourse | null> => {
     const result = await prisma.offeredCourse.findUnique({
         where: {
-            id,
+            id
         },
         include: {
             semesterRegistration: true,
             course: true,
-            academicDepartment: true,
-        },
+            academicDepartment: true
+        }
     });
     return result;
 };
@@ -144,14 +134,14 @@ const updateOneInDB = async (
 ): Promise<OfferedCourse> => {
     const result = await prisma.offeredCourse.update({
         where: {
-            id,
+            id
         },
         data: payload,
         include: {
             semesterRegistration: true,
             course: true,
-            academicDepartment: true,
-        },
+            academicDepartment: true
+        }
     });
     return result;
 };
@@ -159,13 +149,13 @@ const updateOneInDB = async (
 const deleteByIdFromDB = async (id: string): Promise<OfferedCourse> => {
     const result = await prisma.offeredCourse.delete({
         where: {
-            id,
+            id
         },
         include: {
             semesterRegistration: true,
             course: true,
-            academicDepartment: true,
-        },
+            academicDepartment: true
+        }
     });
     return result;
 };
@@ -175,5 +165,5 @@ export const offeredCourseService = {
     getAllFromDB,
     getByIdFromDB,
     updateOneInDB,
-    deleteByIdFromDB,
-};
+    deleteByIdFromDB
+}
